@@ -51,6 +51,9 @@ static const char *TAG = "SERVER";
 static int s_retry_num = 0;
 
 
+int8_t nvs_query_count();
+
+
 static void event_handler(void *arg, esp_event_base_t event_base,
                           int32_t event_id, void *event_data)
 {
@@ -350,12 +353,14 @@ void cmd_parser(const char *data)
 
             esp_err_t err;
             nvs_handle my_handle;
+            if(querycount_int>nvs_query_count()){
             nvs_open("COUNT", NVS_READWRITE, &my_handle);
             // Read
             err = nvs_set_i8(my_handle, "QueryCount", querycount_int);
             printf((err != ESP_OK) ? "Query Count Failed!\n" : "Query Count Done\n");
             nvs_commit(my_handle);
             nvs_close(my_handle);
+            }
 
             nvs_open("QUERY", NVS_READWRITE, &my_handle);
             // Read
