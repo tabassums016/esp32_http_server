@@ -50,10 +50,6 @@ static const char *TAG2 = "wifi station";
 static const char *TAG = "SERVER";
 static int s_retry_num = 0;
 
-//
-//int8_t query_nvs_count;
-//char query_array[50][60];
-//char get_query[500];
 
 static void event_handler(void *arg, esp_event_base_t event_base,
                           int32_t event_id, void *event_data)
@@ -576,16 +572,8 @@ void app_main(void)
     ESP_LOGI(TAG2, "ESP_WIFI_MODE_STA");
     wifi_init_sta();
     ESP_LOGI(TAG2,"WIFI RSSI = %d",wifi_rssi());
-    // wifi_ap_record_t ap;
-    // esp_wifi_sta_get_ap_info(&ap);
-    // RSSI = ap.rssi;
-    // printf("WIFI rssi = %d\n", RSSI);
+   
     init_server();
     nvs_query_page();
-    // char *query_rcv = malloc (sizeof (char) * 15);
-    // query_rcv = create_json();
-    // printf("\nqrecv= %s",query_rcv);
-     //create_json();
-
-     
+         
 }
